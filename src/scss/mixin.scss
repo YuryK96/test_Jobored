@@ -1,0 +1,9 @@
+
+@mixin text($fontSize, $fontWeight, $lineHeight, $color) {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: $fontWeight;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  color: $color
+}

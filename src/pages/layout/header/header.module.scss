@@ -1,0 +1,32 @@
+@import "src/scss/variables";
+@import "src/scss/mixin";
+
+.header {
+  background: white;
+  padding: var(--paddingHeader);
+
+  .container {
+    display: flex;
+
+    nav {
+      margin: auto;
+      width: 275px;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+
+      span {
+        .active {
+          color: $mainBlue;
+        }
+        a {
+          @include text(16px, 500, 20px, black);
+        }
+
+      }
+
+    }
+  }
+}
+
+

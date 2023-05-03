@@ -1,12 +1,18 @@
 import {FC} from "react";
-import s from  './layout.module.scss'
-import {Outlet} from "react-router-dom";
+import s from './header.module.scss'
+import logo from '../../../assets/img/logo.svg'
+import {NavLink} from "react-router-dom";
 
-export const Layout: FC = () => {
+export const Header: FC = () => {
 
 
-    return <div>
-        123
-        <Outlet/>
-    </div>
+    return <header className={s.header}>
+        <div className={s.container}>
+            <div className={s.logo}><img src={logo} alt='Jobored'/></div>
+            <nav><span> <NavLink className={ ( {isActive} )=> isActive ? s.active : ''  } to='/'>Поиск Вакансий</NavLink> </span> <span> <NavLink className={ ( {isActive} )=> isActive ? s.active : ''  }
+                to='/favorites'>Избранное</NavLink> </span>
+            </nav>
+        </div>
+
+    </header>
 }

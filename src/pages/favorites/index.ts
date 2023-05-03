@@ -1,1 +1,1 @@
-export {Layout} from './layout'
+export {Favorites} from './favorites'

@@ -1,11 +1,11 @@
 import {FC} from "react";
-import s from  './layout.module.scss'
+import s from './vacancies.module.scss'
 
-export const Layout: FC = () => {
+export const Vacancies: FC = () => {
 
 
     return <div>
-        123
+        vacancies
 
     </div>
 }

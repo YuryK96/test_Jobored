@@ -1,11 +1,11 @@
 import {FC} from "react";
-import s from  './layout.module.scss'
+import s from './favorites.module.scss'
 
-export const Layout: FC = () => {
+export const Favorites: FC = () => {
 
 
     return <div>
-        123
+        favorites
 
     </div>
 }
