@@ -7,3 +7,11 @@
   line-height: $lineHeight;
   color: $color
 }
+
+@mixin input {
+  height: 20px;
+  padding: 11px 12px;
+  border: 1px solid #D5D6DC;
+  border-radius: 8px;
+  background: white;
+}

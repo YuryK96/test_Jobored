@@ -1,1 +1,1 @@
-export {Filter} from './filter'
+export {Content} from './content'

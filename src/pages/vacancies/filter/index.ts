@@ -1,1 +1,1 @@
-export {Vacancies} from './vacancies'
+export {Filter} from './filter'

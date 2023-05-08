@@ -1,1 +1,1 @@
-export {Filter} from './filter'
+export {SearchPanel} from './search-panel'

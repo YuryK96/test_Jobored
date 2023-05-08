@@ -1,11 +1,11 @@
 import {FC} from "react";
-import s from './filter.module.scss'
+import s from './content.module.scss'
 
-export const Filter: FC = () => {
-
-
-    return <aside className={s.filter}>
+export const Content: FC = () => {
 
 
+    return <aside className={s.content}>
+
+content
     </aside>
 }

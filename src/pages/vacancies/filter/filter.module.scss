@@ -1,4 +1,166 @@
+@import "src/scss/mixin";
+@import "src/scss/variables";
 
-.vacancies {
-  
+.filter {
+  width: 275px;
+  height: 320px;
+  background: white;
+  border: 1px solid #EAEBED;
+  border-radius: 12px;
+  padding: 20px;
+
+  h2 {
+    @include text(16px, 700, 19px, $black);
+    margin-bottom: 8px;
+  }
+
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+
+    h1 {
+      margin: 0;
+      @include text(20px, 700, 20px, $black);
+
+    }
+
+    .reset {
+      display: flex;
+      justify-content: end;
+      width: 50%;
+
+      span {
+        @include text(14px, 500, 20px, #ACADB9);
+        margin: auto 4px;
+      }
+
+      img {
+        width: 16px;
+        height: 16px;
+        margin: auto 0;
+      }
+
+    }
+  }
+
+  .industry {
+    margin-top: 32px;
+
+
+    .industry_input {
+      cursor: pointer;
+
+
+      @include input;
+      display: flex;
+      position: relative;
+      justify-content: space-between;
+
+
+      span {
+        display: block;
+        margin: auto 0;
+
+        .grayText {
+          color: $gray;
+        }
+
+        .blackText {
+          color: $black;
+        }
+
+        @include text(14px, 400, 20px, $gray)
+      }
+
+      .list {
+
+        z-index: 3;
+        position: absolute;
+        margin: 32px 0 0 -13px;
+        width: 275px;
+        background: white;
+        border: 0px solid #EAEBED;
+        border-radius: 12px;
+        max-height: 0;
+        transition: .3s;
+        overflow: hidden;
+
+
+      }
+
+      .openList {
+        border: 1px solid #EAEBED;
+        transition: 2s;
+        max-height: 999px;
+
+      }
+    }
+    .blueBorder {
+      border: 1px solid $mainBlue;
+    }
+
+  }
+
+  .salary {
+
+
+    h2 {
+      margin-top: 20px;
+
+    }
+
+
+    .input_container {
+      position: relative;
+      &:last-child {
+        margin-top: 8px;
+      }
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+        display: none;
+
+      }
+
+      input {
+        &:focus {
+          outline: none;
+            border: 1px solid $mainBlue;
+
+        }
+        @include input;
+        width: 249px;
+        font-size: 16px;
+        &::placeholder {
+          @include text(14px, 400, 20px, $gray)
+        }
+
+
+
+      }
+
+      .arrows_container {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        margin:-42px 0 0 252px;
+
+        img {
+          cursor: pointer;
+        }
+      }
+    }
+
+  }
+
+  .error {
+    @include text(12px,400,14px,red);
+    text-align: center;
+    height: 12px;
+  }
+
+  .button {
+    margin-top: 20px;
+  }
+
 }

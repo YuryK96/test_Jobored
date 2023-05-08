@@ -1,11 +1,18 @@
 import {FC} from "react";
-import s from './filter.module.scss'
+import s from './search-panel.module.scss'
+import {FieldValues, UseFormRegister} from "react-hook-form";
+import {FormValuesType} from "../vacancies";
 
-export const Filter: FC = () => {
+export const SearchPanel: FC<SearchPanelType> = ({register}) => {
 
 
-    return <aside className={s.filter}>
+    return <div className={s.searchPanel}>
         
+panel
+    </div>
+}
 
-    </aside>
+
+type SearchPanelType = {
+    register: UseFormRegister<FormValuesType>
 }
