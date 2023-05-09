@@ -28,10 +28,12 @@ const onSubmit = (data:FormValuesType)=> {
 
     return <section className={s.vacancies}>
         <form onSubmit={handleSubmit(onSubmit)}>
+
         <Filter trigger={trigger}  getValues={getValues} register={register} setValue={setValue} industry={industry} isValid={isValid}   chooseIndustry={chooseIndustry}/>
+            <div className={s.wrapper}>
         <SearchPanel register={register}/>
         <Content/>
-
+        </div>
         </form>
 
     </section>
@@ -40,4 +42,5 @@ const onSubmit = (data:FormValuesType)=> {
 export type  FormValuesType = {
     numberFrom: string
     numberUpTo: string
+    search: string
 }

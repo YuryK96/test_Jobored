@@ -2,7 +2,7 @@
 @import "src/scss/variables";
 
 .filter {
-  width: 275px;
+  width: 273px;
   height: 320px;
   background: white;
   border: 1px solid #EAEBED;
@@ -63,14 +63,14 @@
         margin: auto 0;
 
         .grayText {
-          color: $gray;
+          color: $grey;
         }
 
         .blackText {
           color: $black;
         }
 
-        @include text(14px, 400, 20px, $gray)
+        @include text(14px, 400, 20px, $grey)
       }
 
       .list {
@@ -132,7 +132,7 @@
         width: 249px;
         font-size: 16px;
         &::placeholder {
-          @include text(14px, 400, 20px, $gray)
+          @include text(14px, 400, 20px, $grey)
         }
 
 
@@ -154,13 +154,19 @@
   }
 
   .error {
-    @include text(12px,400,14px,red);
+    @include text(14px,400,14px,red);
     text-align: center;
     height: 12px;
+    margin-top: 1px;
   }
 
   .button {
-    margin-top: 20px;
+    @include button;
+    @include text(14px,500,0,white);
+    margin-top: 7px;
+    width: 100%;
+    height: 40px;
+
   }
 
 }

@@ -6,6 +6,8 @@ import arrow_down from '../../../assets/img/arrow_down.svg'
 import arrow_down_salary from '../../../assets/img/arrow_down_salary.svg'
 import arrow_up_salary from '../../../assets/img/arrow_up_salary.svg'
 import {FormValuesType} from "../vacancies";
+import {useSelector} from  'react-redux'
+import {getCategoryNamesKeys} from "../../../redux-toolkit/vacancies/vacancies-selectors";
 
 export const Filter: FC<FilterType> = ({
                                            register,
@@ -17,7 +19,8 @@ export const Filter: FC<FilterType> = ({
                                            trigger
                                        }) => {
     const [isOpenList, setIsOpenList] = useState<boolean>(false)
-
+    const category = useSelector(getCategoryNamesKeys)
+console.log(category)
     const toggleList = () => {
         setIsOpenList(!isOpenList)
     }
@@ -93,8 +96,8 @@ export const Filter: FC<FilterType> = ({
 
         </div>
 
-        <div className={s.error}> {!isValid && <span>Сумма ОТ оклада должна быть меньше суммы ДО оклада</span>}</div>
-        <button className={s.button} type='submit'>ok</button>
+        <div className={s.error}> {!isValid && <span>Неверный диапазон сумм</span>}</div>
+        <button className={s.button} type='submit'>Применить</button>
     </aside>
 }
 

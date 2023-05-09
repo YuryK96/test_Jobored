@@ -1,4 +1,13 @@
 
 .vacancies {
 margin-top: 40px;
+
+  form {
+    display: flex;
+    gap: 28px;
+
+  .wrapper {
+    width: 100%;
+  }
+  }
 }

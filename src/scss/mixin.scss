@@ -1,4 +1,4 @@
-
+@import "variables";
 @mixin text($fontSize, $fontWeight, $lineHeight, $color) {
   font-family: 'Inter', sans-serif;
   font-style: normal;
@@ -14,4 +14,11 @@
   border: 1px solid #D5D6DC;
   border-radius: 8px;
   background: white;
+}
+
+@mixin button {
+  border-radius: 8px;
+  border: none;
+  background: $mainBlue;
+  cursor: pointer;
 }

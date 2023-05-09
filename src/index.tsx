@@ -1,28 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
+import {Provider} from "react-redux";
 import reportWebVitals from "./reportWebVitals";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Layout} from "./pages/layout";
 import {Vacancies} from "./pages/vacancies";
 import {Favorites} from "./pages/favorites";
 import '../src/scss/fonts.scss'
+import {store} from "./redux-toolkit/store";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
 );
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <Routes>
-                <Route path='/' element={<Layout/>}>
-                  <Route path='/' element={<Vacancies/>}/>
-                  <Route path='/favorites' element={<Favorites/>}/>
+        <Provider store={store}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<Layout/>}>
+                        <Route path='/' element={<Vacancies/>}/>
+                        <Route path='/favorites' element={<Favorites/>}/>
 
-                </Route>
+                    </Route>
 
-            </Routes>
-        </BrowserRouter>
+                </Routes>
+            </BrowserRouter></Provider>
     </React.StrictMode>
 );
 

@@ -1,4 +1,48 @@
-
+@import "./src/scss/mixin";
+@import "./src/scss/variables";
 .searchPanel {
-  
+width: 100%;
+  .searchInput {
+    background: white;
+    display: flex;
+    align-items: center;
+    padding: 8px  12px ;
+    border-radius: 8px;
+    .wrapper {
+      display: flex;
+      width: 100%;
+      margin-right: 8px;
+      .icon {
+        margin-right: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      input {
+        width: 100%;
+        @include text(16px,500,21px,$black);
+        padding: 4px 6px;
+        border: none;
+        &::placeholder {
+          @include text(14px,400,21px,$grey)
+        }
+        &:focus {
+          outline: none;
+          border: .5px solid $mainBlue;
+          border-radius: 8px;
+
+
+        }
+      }
+
+
+    }
+    button {
+      @include button;
+      @include text(14px,500,0,white);
+      height: 32px;
+      width: 94px;
+
+    }
+  }
 }
