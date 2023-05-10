@@ -1,4 +1,69 @@
-
+@import "src/scss/variables";
+@import "src/scss/mixin";
 .content {
+margin-top: 16px;
+
+  .container {
+
+    background: white;
+    margin-bottom: 16px;
+    border: 1px solid #EAEBED;
+    border-radius: 12px;
+    padding: 24px;
+    .wrapper {
+      display: flex;
+      justify-content: space-between;
+      .name{
+        @include text(20px,600,24px,$mainBlue)
+
+      }
+      .star {
+        cursor: pointer;
+
+      }
+    }
+
+    .conditions {
+      margin-top: 10px;
+      .money {
+
+        @include text(16px,600,16px,$black);
+      }
+
+      }
+      .circle {
+        margin: 0 10px;
+        color: #7B7C88;
+        font-size: 16px;
+        font-weight: 700;
+
+      }
+      .schedule {
+        @include text(16px,400,20px,$black);
+      }
+    }
+
+    .location {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+
+      .icon {
+      margin-right: 10px ;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .town {
+        @include text(16px,400,19px,$black);
+      }
+    }
+
+  .clear {
+    margin-top: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  }
   
-}

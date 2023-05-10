@@ -6,7 +6,7 @@ import {Header} from "./header";
 import {useIsAuth} from "../../assets/hooks/is-auth-hook";
 import {AppDispatch} from "../../redux-toolkit/store";
 import {authorization} from "../../redux-toolkit/auth/auth-thunk";
-import {getCategories} from "../../redux-toolkit/vacancies/vacancies-thunk";
+import {getCategories, getVacancies} from "../../redux-toolkit/vacancies/vacancies-thunk";
 
 export const Layout: FC = () => {
     const isAuth = useIsAuth()
@@ -15,8 +15,14 @@ export const Layout: FC = () => {
     useEffect(() => {
         if (!isAuth) {
             dispatch(authorization())
-        } else  {
+        } else {
             dispatch(getCategories())
+            dispatch(getVacancies({
+                payment_to: '',
+                payment_from: '',
+                keyword: '',
+                catalogues: ''
+            }))
         }
     }, [isAuth, dispatch])
 

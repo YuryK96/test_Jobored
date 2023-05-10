@@ -1,15 +1,19 @@
 import {instance} from "./api";
 import {AxiosResponse} from "axios";
-import {GetCategoriesResponseType} from "./api-type";
-
+import {FilterType, GetCategoriesResponseType, GetVacanciesResponseType} from "./api-type";
 
 
 export const vacanciesAPI = {
-    getCategories(){
-      return  instance
+    getCategories() {
+        return instance
             .get("catalogues/")
-            .then((res:AxiosResponse<GetCategoriesResponseType>) => res.data);
+            .then((res: AxiosResponse<GetCategoriesResponseType>) => res.data);
 
     },
+    getVacancies(filter:FilterType ) {
+        return instance.get(`vacancies/?published=1&keyword=${filter.keyword}&payment_from=${filter.payment_from}&payment_to=${filter.payment_to}&catalogues=${filter.catalogues}`).then((res: AxiosResponse<GetVacanciesResponseType>) => res.data)
+    }
 
 }
+
+

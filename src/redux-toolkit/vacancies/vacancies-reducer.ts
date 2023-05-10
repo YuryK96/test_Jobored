@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {InitialState} from "./vacancies-type";
-import {getCategories} from "./vacancies-thunk";
+import {getCategories, getVacancies} from "./vacancies-thunk";
 
 
 const vacanciesReducer = createSlice({
@@ -35,6 +35,8 @@ const vacanciesReducer = createSlice({
 
 
                 }
+            }).addCase(getVacancies.fulfilled, (state, action) => {
+                state.vacancies = action.payload.objects
             })
         }
 

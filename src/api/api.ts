@@ -39,12 +39,3 @@ instance.interceptors.request.use((config) => {
 
 
 
-export const getVac = () =>
-    instance
-        .get(
-            "https://startup-summer-2023-proxy.onrender.com/2.0/vacancies/?published=1&keyword=консультант&payment_from=1&payment_to=300000&catalogues=1"
-        )
-        .then((res) => {
-            console.log(res);
-            return res;
-        });
