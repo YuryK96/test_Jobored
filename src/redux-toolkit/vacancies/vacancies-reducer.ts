@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {Action, AnyAction, createSlice, isPending, ThunkDispatch} from "@reduxjs/toolkit";
 import {InitialState} from "./vacancies-type";
 import {getCategories, getVacancies} from "./vacancies-thunk";
 
@@ -8,7 +8,12 @@ const vacanciesReducer = createSlice({
         initialState: {
             vacancies: null,
             categories: null,
-            categoriesNamesKeys: []
+            categoriesNamesKeys: [],
+            error: null,
+            isPending: {
+                vacancies: null,
+                categories: null
+            },
         } as InitialState,
         reducers: {},
         extraReducers: (builder) => {
@@ -35,12 +40,24 @@ const vacanciesReducer = createSlice({
 
 
                 }
+                state.isPending.categories = false
             }).addCase(getVacancies.fulfilled, (state, action) => {
                 state.vacancies = action.payload.objects
+                state.isPending.vacancies = false
+            }).addCase(getVacancies.pending, (state, action) => {
+                state.isPending.vacancies = true
+            }).addCase(getCategories.pending, (state, action) => {
+                state.isPending.categories = true
+            }).addMatcher((action: AnyAction) => action.type.endsWith('rejected'), (state, action) => {
+                state.error = action.payload;
+                state.isPending.categories = false
+                state.isPending.vacancies = false
+
             })
         }
 
     }
 )
+
 
 export default vacanciesReducer.reducer
