@@ -1,0 +1,58 @@
+@import "variables";
+
+.pagination_container {
+  display: flex;
+  list-style-type: none;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+
+  .pagination_li, .pagination_next, .pagination_prev {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #D5D6DC;
+    border-radius: 4px;
+    background: white;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    color: $black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    a {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &:hover {
+      border: 1px solid $mainBlue;
+    }
+  }
+  .pagination_next, .pagination_prev {
+    color:  #7B7C88;
+  }
+
+  .selected {
+    background: $mainBlue;
+    border: 1px solid $mainBlue;
+    color: white;
+    pointer-events: none;
+
+  }
+
+  .disabled {
+
+    color: #D5D6DC;
+    border: 1px solid #EAEBED;
+    pointer-events: none;
+
+  }
+}

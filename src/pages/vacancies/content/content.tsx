@@ -1,39 +1,58 @@
-import {FC} from "react";
+import {FC, useState} from "react";
 import s from './content.module.scss'
 import {useSelector} from "react-redux";
 import {getVacanciesSelector} from "../../../redux-toolkit/vacancies/vacancies-selectors";
-import star from '../../../assets/img/star.svg'
-import location from '../../../assets/img/location_icon.svg'
 import clear from '../../../assets/img/clear.svg'
-import {NavLink} from "react-router-dom";
+import ReactPaginate from "react-paginate";
+import '../../../scss/pagination.scss'
+import {VacancyHeader} from "../../common/vacancy-header";
 
 export const Content: FC = () => {
     const vacancies = useSelector(getVacanciesSelector)
+
+    const [itemOffset, setItemOffset] = useState(0);
+    const [actualPage, setActualPage] = useState(0);
+
+    const itemsPerPage = 4;
+    const endOffset = itemOffset + itemsPerPage;
+    const currentItems = vacancies.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(vacancies.length / itemsPerPage);
+
+
+    const handlePageClick = (event: { selected: number }) => {
+        const newOffset = (event.selected * itemsPerPage) % vacancies.length;
+        setActualPage(event.selected)
+        setItemOffset(newOffset);
+    };
 
 
     if (vacancies && vacancies.length !== 0) {
         return <section className={s.content}>
 
 
-            {vacancies.map((vacancy) => {
-                return <div key={vacancy.id} className={s.container}>
-                    <div className={s.wrapper}><NavLink to='/'><span
-                        className={s.name}>{vacancy.profession}</span></NavLink>
-                        <div className={s.star}><img src={star} alt='star'/></div>
-                    </div>
-                    <div className={s.conditions}><span
-                        className={s.money}>з/п от {vacancy.payment_from} {vacancy.currency} </span> <span
-                        className={s.circle}>•</span> <span
-                        className={s.schedule}>{vacancy.type_of_work.title}</span>
-                    </div>
-                    <div className={s.location}>
-                        <div className={s.icon}><img src={location} alt='location_icon'/></div>
-                        <span className={s.town}></span>{vacancy.town.title}</div>
-
-
-                </div>
+            {currentItems.map((vacancy) => {
+                return <div key={vacancy.id}><VacancyHeader vacancyRichText={vacancy.vacancyRichText}
+                                                            profession={vacancy.profession}
+                                                            payment_from={vacancy.payment_from}
+                                                            currency={vacancy.currency}
+                                                            type_of_work={vacancy.type_of_work.title}
+                                                            town={vacancy.town.title}/></div>
             })}
 
+            <ReactPaginate
+                breakLabel={false}
+                pageRangeDisplayed={actualPage === 0 ? 3 : actualPage + 1 === pageCount ? 3 : 2}
+                marginPagesDisplayed={0}
+                nextLabel=">"
+                onPageChange={handlePageClick}
+                pageCount={pageCount}
+                containerClassName='pagination_container'
+                pageClassName='pagination_li'
+                nextClassName='pagination_next'
+                previousClassName='pagination_prev'
+                previousLabel="<"
+                renderOnZeroPageCount={null}
+            />
 
         </section>
     } else {
@@ -43,5 +62,4 @@ export const Content: FC = () => {
     }
 
 
-
-}
+    }

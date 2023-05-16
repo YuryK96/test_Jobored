@@ -17,7 +17,18 @@ export const Layout: FC = () => {
 
     useEffect(() => {
         if (!isAuth) {
-            dispatch(authorization())
+            dispatch(authorization()).then(
+                () => {
+                    dispatch(getCategories());
+                    dispatch(getVacancies({
+                            payment_to: '',
+                            payment_from: '',
+                            keyword: '',
+                            catalogues: ''
+                        })
+                    )
+                })
+
         } else {
             dispatch(getCategories())
             dispatch(getVacancies({

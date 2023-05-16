@@ -9,6 +9,7 @@ import {Vacancies} from "./pages/vacancies";
 import {Favorites} from "./pages/favorites";
 import '../src/scss/fonts.scss'
 import {store} from "./redux-toolkit/store";
+import {Vacancy} from "./pages/vacancy";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -21,7 +22,7 @@ root.render(
                     <Route path='/' element={<Layout/>}>
                         <Route path='/' element={<Vacancies/>}/>
                         <Route path='/favorites' element={<Favorites/>}/>
-
+                        <Route path='/vacancy' element={<Vacancy/>}/>
                     </Route>
 
                 </Routes>

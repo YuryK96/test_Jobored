@@ -10,3 +10,4 @@ export const auth = async () =>
         .then((res:AxiosResponse<AuthResponseType>) =>res.data);
 
 
+

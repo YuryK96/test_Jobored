@@ -1,0 +1,14 @@
+@import "src/scss/variables";
+@import "src/scss/mixin";
+.vacancy {
+  margin-top: 40px;
+  padding-bottom: 20px;
+
+  .description {
+    padding: 24px;
+    margin-top: 20px;
+    background: white;
+    @include text(16px,400,140%,$black);
+
+  }
+}
