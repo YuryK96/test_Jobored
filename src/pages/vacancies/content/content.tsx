@@ -1,7 +1,7 @@
-import {FC, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import s from './content.module.scss'
 import {useSelector} from "react-redux";
-import {getVacanciesSelector} from "../../../redux-toolkit/vacancies/vacancies-selectors";
+import {getFavoritesSelector, getVacanciesSelector} from "../../../redux-toolkit/vacancies/vacancies-selectors";
 import clear from '../../../assets/img/clear.svg'
 import ReactPaginate from "react-paginate";
 import '../../../scss/pagination.scss'
@@ -9,6 +9,7 @@ import {VacancyHeader} from "../../common/vacancy-header";
 
 export const Content: FC = () => {
     const vacancies = useSelector(getVacanciesSelector)
+    const favorites = useSelector(getFavoritesSelector)
 
     const [itemOffset, setItemOffset] = useState(0);
     const [actualPage, setActualPage] = useState(0);
@@ -17,6 +18,8 @@ export const Content: FC = () => {
     const endOffset = itemOffset + itemsPerPage;
     const currentItems = vacancies.slice(itemOffset, endOffset);
     const pageCount = Math.ceil(vacancies.length / itemsPerPage);
+
+
 
 
     const handlePageClick = (event: { selected: number }) => {
@@ -32,6 +35,8 @@ export const Content: FC = () => {
 
             {currentItems.map((vacancy) => {
                 return <div key={vacancy.id}><VacancyHeader vacancyRichText={vacancy.vacancyRichText}
+                                                            favorites={favorites}
+                                                            id={vacancy.id}
                                                             profession={vacancy.profession}
                                                             payment_from={vacancy.payment_from}
                                                             currency={vacancy.currency}

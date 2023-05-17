@@ -3,12 +3,14 @@ import {useDispatch} from "react-redux";
 import s from './layout.module.scss'
 import {Outlet} from "react-router-dom";
 import {Header} from "./header";
-import {useIsAuth} from "../../assets/hooks/is-auth-hook";
+import {useIsAuth} from "../../hooks/is-auth-hook";
 import {AppDispatch} from "../../redux-toolkit/store";
 import {authorization} from "../../redux-toolkit/auth/auth-thunk";
 import {getCategories, getVacancies} from "../../redux-toolkit/vacancies/vacancies-thunk";
-import {useIsPending} from "../../assets/hooks/is-pending-hook";
+import {useIsPending} from "../../hooks/is-pending-hook";
 import {Loader} from "../common/loader";
+import {getFavoriteVacanciesLS} from "../../local-storage/local-storage";
+import {addFavoritesAC} from "../../redux-toolkit/vacancies/vacancies-reducer";
 
 export const Layout: FC = () => {
     const isAuth = useIsAuth()
@@ -39,6 +41,15 @@ export const Layout: FC = () => {
             }))
         }
     }, [isAuth, dispatch])
+
+
+    useEffect( ()=>{
+        const favorites = getFavoriteVacanciesLS()
+        if (favorites) {
+            dispatch(addFavoritesAC(favorites))
+        }
+
+    },[dispatch] )
 
 
     return <div className={s.layout}>

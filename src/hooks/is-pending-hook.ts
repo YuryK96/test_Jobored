@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import {isPendingSelector} from "../../redux-toolkit/vacancies/vacancies-selectors";
+import {isPendingSelector} from "../redux-toolkit/vacancies/vacancies-selectors";
 
 
 export function useIsPending() {

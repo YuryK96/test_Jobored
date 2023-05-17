@@ -1,7 +1,8 @@
 @import "src/scss/variables";
 @import "src/scss/mixin";
 .vacancy {
-  margin-top: 40px;
+  margin: 40px var(--paddingLayout) 0 ;
+
   padding-bottom: 20px;
 
   .description {

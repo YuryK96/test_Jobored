@@ -1,14 +1,15 @@
 import {AxiosError} from "axios";
 import {auth} from "../../api/auth";
 import {createAppAsyncThunk} from "../../api/api";
+import {setRefreshTokenInLS, setTokenInLS} from "../../local-storage/local-storage";
 
 
 export const authorization = createAppAsyncThunk('auth',
     async (_, {rejectWithValue}) => {
         try {
             const response = await auth().then((res) => {
-                localStorage.setItem("token", res.access_token);
-                localStorage.setItem("refresh_token", res.refresh_token);
+                setTokenInLS(res.access_token)
+                setRefreshTokenInLS(res.refresh_token)
             })
         } catch (error) {
             const err = error as AxiosError;

@@ -1,5 +1,5 @@
-import {Action, AnyAction, createSlice, isPending, ThunkDispatch} from "@reduxjs/toolkit";
-import {InitialState} from "./vacancies-type";
+import {AnyAction, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {InitialState, VacancyHeaderType} from "./vacancies-type";
 import {getCategories, getVacancies} from "./vacancies-thunk";
 
 
@@ -9,13 +9,19 @@ const vacanciesReducer = createSlice({
             vacancies: null,
             categories: null,
             categoriesNamesKeys: [],
+            favorites: [],
             error: null,
             isPending: {
                 vacancies: null,
                 categories: null
             },
         } as InitialState,
-        reducers: {},
+        reducers: {
+            addFavoritesAC ( state, action: PayloadAction<VacancyHeaderType[]> ){
+
+                state.favorites = action.payload
+            },
+        },
         extraReducers: (builder) => {
             builder.addCase(getCategories.fulfilled, (state, action) => {
                 if (action.payload) {
@@ -59,5 +65,5 @@ const vacanciesReducer = createSlice({
     }
 )
 
-
+export const { addFavoritesAC} = vacanciesReducer.actions
 export default vacanciesReducer.reducer
