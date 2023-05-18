@@ -1,9 +1,17 @@
 @import "src/scss/mixin";
 @import "src/scss/variables";
+
 .favorites {
 
-  margin: 40px var(--paddingLayout) 0 ;
-  padding-bottom: 20px;
+  margin: 40px var(--paddingLayout) 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 81vh;
+
+  .wrapper_pagination {
+    margin-bottom: 40px;
+  }
 
 }
 
@@ -21,7 +29,7 @@
 
   button {
 
-    @include text(14px,600,155%, #3B7CD3);
+    @include text(14px, 600, 155%, #3B7CD3);
     font-family: 'Open Sans', sans-serif;
     padding: 10px 24px;
     background: #DEECFF;

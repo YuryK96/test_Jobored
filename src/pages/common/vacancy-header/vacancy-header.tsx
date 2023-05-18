@@ -19,6 +19,7 @@ export const VacancyHeader: FC<VacancyHeaderType> = ({
                                                          isPageVacancy,
                                                          id,
                                                          favorites,
+
                                                      }) => {
     const dispatch = useDispatch<AppDispatch>()
 

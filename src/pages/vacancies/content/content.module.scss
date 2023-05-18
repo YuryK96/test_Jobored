@@ -3,6 +3,11 @@
 
 .content {
   margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 76.5vh;
+
 
 
   .clear {

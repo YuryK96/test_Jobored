@@ -11,7 +11,7 @@ export const vacanciesAPI = {
 
     },
     getVacancies(filter:FilterType ) {
-        return instance.get(`vacancies/?published=1&keyword=${filter.keyword}&payment_from=${filter.payment_from}&payment_to=${filter.payment_to}&catalogues=${filter.catalogues}`).then((res: AxiosResponse<GetVacanciesResponseType>) => res.data)
+        return instance.get(`vacancies/?published=1&count=50&keyword=${filter.keyword}&payment_from=${filter.payment_from}&payment_to=${filter.payment_to}&catalogues=${filter.catalogues}`).then((res: AxiosResponse<GetVacanciesResponseType>) => res.data)
     }
 
 }

@@ -18,9 +18,15 @@
       span {
         .active {
           color: $mainBlue;
+            pointer-events: none;
+
         }
         a {
           @include text(16px, 500, 20px, black);
+          padding-bottom: 2px;
+          &:hover {
+           border-bottom: 1px solid  $mainBlue;
+          }
         }
 
       }
