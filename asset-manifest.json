@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/test_Jobored/static/css/main.0ed3f2ae.css",
-    "main.js": "/test_Jobored/static/js/main.cd9f01f4.js",
+    "main.js": "/test_Jobored/static/js/main.75bf4ba7.js",
     "static/js/787.28cb0dcd.chunk.js": "/test_Jobored/static/js/787.28cb0dcd.chunk.js",
     "static/media/clear.svg": "/test_Jobored/static/media/clear.9e323234d0781ce46e47d8131ed07bc8.svg",
     "static/media/logo.svg": "/test_Jobored/static/media/logo.fc834db5ebaf00f2f9fad805ab33c29c.svg",
@@ -16,11 +16,11 @@
     "static/media/arrow_up_salary.svg": "/test_Jobored/static/media/arrow_up_salary.0f55f4577374f807205a5ebf6e7e451d.svg",
     "static/media/arrow_down.svg": "/test_Jobored/static/media/arrow_down.916aff4c40a811c76bbb4772d3c71bb2.svg",
     "main.0ed3f2ae.css.map": "/test_Jobored/static/css/main.0ed3f2ae.css.map",
-    "main.cd9f01f4.js.map": "/test_Jobored/static/js/main.cd9f01f4.js.map",
+    "main.75bf4ba7.js.map": "/test_Jobored/static/js/main.75bf4ba7.js.map",
     "787.28cb0dcd.chunk.js.map": "/test_Jobored/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0ed3f2ae.css",
-    "static/js/main.cd9f01f4.js"
+    "static/js/main.75bf4ba7.js"
   ]
 }
