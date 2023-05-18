@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <BrowserRouter>
+            <BrowserRouter basename="/test_Jobored">
                 <Routes>
                     <Route path='/' element={<Layout/>}>
                         <Route path='/' element={<Vacancies/>}/>
