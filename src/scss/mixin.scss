@@ -1,12 +1,21 @@
 @import "variables";
+
+
 @mixin text($fontSize, $fontWeight, $lineHeight, $color) {
+
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: $fontWeight;
   font-size: $fontSize;
   line-height: $lineHeight;
-  color: $color
+  color: $color;
+
+  @media (max-width: $breakpoint_lg_bottom) {
+    font-size: calc( $fontSize - 2px );
+  }
 }
+
+
 
 @mixin input {
   height: 20px;
@@ -15,6 +24,7 @@
   border-radius: 8px;
   background: white;
 }
+
 
 @mixin button {
   border-radius: 8px;

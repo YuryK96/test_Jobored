@@ -1,5 +1,4 @@
-@import "src/scss/variables";
-@import "src/scss/mixin";
+@import "src/scss/common/common";
 .container {
 
   background: white;
@@ -16,6 +15,7 @@
     }
     .star {
       cursor: pointer;
+      margin-left: 10px;
 
     }
   }

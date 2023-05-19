@@ -59,7 +59,7 @@ export const Filter: FC<FilterType> = ({
         <div className={s.industry}>
             <h2>Отрасль</h2>
 
-            <div onClick={toggleList}
+            <div onClick={toggleList}  data-elem="industry-select"
                  className={`${s.industry_input} ${industry ? s.blackText : s.grayText}  ${isOpenList ? s.blueBorder : ''}`}>
                 <span
                     style={{color: industry ? "#232134FF" : "#ACADB9FF"}}>{industry ? industry : 'Выберите отрасль'} </span>
@@ -81,12 +81,13 @@ export const Filter: FC<FilterType> = ({
 
 
             <div className={s.input_container}><input
-                onKeyDown={(evt: React.KeyboardEvent<HTMLInputElement>) => ["e", "E", "+", "-"].includes(evt.key) && evt.preventDefault()}
+                data-elem="salary-from-input"
+                onKeyDown={(evt: React.KeyboardEvent<HTMLInputElement>) => ["e", "E", "+", "-","."].includes(evt.key) && evt.preventDefault()}
                 {...register('numberFrom', {
                     validate: {
                         correctNumber: (value: string, formValues) => {
 
-                            return Number(value) < Number(formValues.numberUpTo) || !formValues.numberUpTo || !value || 'Оклад от не может быть меньше Оклада до'
+                            return Number(value) < Number(formValues.numberUpTo) || !formValues.numberUpTo || !value || 'оклад ОТ не может быть меньше оклада ДО'
                         }
                     }
                 })} type='number' placeholder='От'/>
@@ -100,12 +101,13 @@ export const Filter: FC<FilterType> = ({
 
 
             <div className={s.input_container}><input
-                onKeyDown={(evt: React.KeyboardEvent<HTMLInputElement>) => ["e", "E", "+", "-"].includes(evt.key) && evt.preventDefault()}
+                data-elem="salary-to-input"
+                onKeyDown={(evt: React.KeyboardEvent<HTMLInputElement>) => ["e", "E", "+", "-","."].includes(evt.key) && evt.preventDefault()}
                 {...register('numberUpTo', {
                     validate: {
                         correctNumber: (value: string, formValues) => {
 
-                            return Number(value) > Number(formValues.numberFrom) || !formValues.numberFrom || !value || 'Оклад до не может быть меньше Оклада от'
+                            return Number(value) > Number(formValues.numberFrom) || !formValues.numberFrom || !value || 'оклад ДО не может быть меньше оклада ОТ'
 
                         }
                     }
@@ -121,7 +123,7 @@ export const Filter: FC<FilterType> = ({
         </div>
 
         <div className={s.error}> {!isValid && <span>Неверный диапазон сумм</span>}</div>
-        <button className={s.button} type='submit'>Применить</button>
+        <button data-elem="search-button" className={s.button} type='submit'>Применить</button>
     </aside>
 }
 

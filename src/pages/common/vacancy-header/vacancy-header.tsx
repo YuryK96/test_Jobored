@@ -22,7 +22,6 @@ export const VacancyHeader: FC<VacancyHeaderType> = ({
 
                                                      }) => {
     const dispatch = useDispatch<AppDispatch>()
-
     const [isFavorite, setIsFavorite] = useState<boolean>( favorites?.some((favorite) => favorite.id === id) || false
     )
 
@@ -32,12 +31,13 @@ export const VacancyHeader: FC<VacancyHeaderType> = ({
     }, [favorites, id])
 
 
-    return <div className={` ${s.container} ${isPageVacancy ? s.pageVacancy : ''}`}>
+    return <div data-elem={`vacancy-${id}`} className={` ${s.container} ${isPageVacancy ? s.pageVacancy : ''}`}>
         <div className={s.wrapper}><NavLink to='/vacancy' state={{
             vacancyRichText, profession, payment_from, currency, type_of_work, town, id
         }}><span
             className={s.name}>{profession}</span></NavLink>
             <div
+                data-elem={`vacancy-${id}-shortlist-button`}
                 onClick={isFavorite ? () => removeFavoriteVacancyLS(id, dispatch, addFavoritesAC) : () => addFavoriteVacancyLS({
                     vacancyRichText,
                         profession,

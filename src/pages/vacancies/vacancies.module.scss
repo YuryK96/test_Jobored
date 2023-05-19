@@ -1,10 +1,18 @@
-
+@import "src/scss/common/common";
 .vacancies {
 margin-top: 40px;
+
+  @media (max-width: $breakpoint_lg_bottom) {
+    margin-top: 15px;
+  }
 
   form {
     display: flex;
     gap: 28px;
+
+    @media (max-width: $breakpoint_lg_bottom) {
+      gap: 10px;
+    }
 
   .wrapper {
     width: 100%;

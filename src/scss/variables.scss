@@ -1,7 +1,39 @@
 $mainBlue: #5E96FC;
 $black: #232134;
 $grey: #ACADB9;
+
+
+//  X-Small	None	<576px
+//  Small	sm	≥576px
+//  Medium	md	≥768px
+//   Large	lg	≥992px
+//   Extra large	xl	≥1200px
+//    Extra extra large	xxl	≥1400px
+
+$breakpoint_xl: 1300px;
+$breakpoint_lg: 1100px;
+$breakpoint_lg_bottom: 1000px;
+$breakpoint_md: 991px;
+$breakpoint_md_medium: 840px;
+$breakpoint_sm: 840px;
+
+
 :root {
   --paddingLayout: 162px;
   --paddingHeader: 23px 162px;
+}
+
+@media (max-width: $breakpoint_xl) {
+
+  :root {
+    --paddingLayout: 112px;
+    --paddingHeader: 20px 112px;
+  }
+}
+@media (max-width: $breakpoint_lg) {
+
+  :root {
+    --paddingLayout: 30px;
+    --paddingHeader: 15px 30px;
+  }
 }

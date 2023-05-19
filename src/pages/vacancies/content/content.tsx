@@ -1,12 +1,11 @@
-import {FC, useEffect, useState} from "react";
+import {FC} from "react";
 import s from './content.module.scss'
 import {useSelector} from "react-redux";
-import {getFavoritesSelector, getVacanciesSelector} from "../../../redux-toolkit/vacancies/vacancies-selectors";
+import {getFavoritesSelector} from "../../../redux-toolkit/vacancies/vacancies-selectors";
 import clear from '../../../assets/img/clear.svg'
 import ReactPaginate from "react-paginate";
-import '../../../scss/pagination.scss'
+import '../../../scss/common/pagination.scss'
 import {VacancyHeader} from "../../common/vacancy-header";
-import {VacancyHeaderType} from "../../../redux-toolkit/vacancies/vacancies-type";
 import {VacancyType} from "../../../api/api-type";
 
 export const Content: FC<ContentType> = ({actualPage, itemsPerPage, handlePageClick, itemOffset,vacancies}) => {

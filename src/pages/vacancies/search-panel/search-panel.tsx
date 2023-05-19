@@ -12,8 +12,8 @@ export const SearchPanel: FC<SearchPanelType> = ({register}) => {
         <div className={s.searchInput}>
             <div className={s.wrapper}>
             <div className={s.icon}><img src={search} alt='search_icon'/></div>
-            <input placeholder='Введите название вакансии' type='search' {...register('search')} /></div>
-            <button type='submit'>Поиск</button>
+            <input data-elem="search-input" placeholder='Введите название вакансии' type='search' {...register('search')} /></div>
+            <button data-elem="search-button" type='submit'>Поиск</button>
         </div>
     </div>
 }
