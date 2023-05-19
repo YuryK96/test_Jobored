@@ -39,7 +39,7 @@ export const Vacancies: FC = () => {
     const handlePageClick = (event: { selected: number }) => {
         const newOffset = (event.selected * itemsPerPage) % vacancies.length;
         setActualPageInPagination(event.selected)
-        setItemOffset(  newOffset);
+        setItemOffset(  isNaN(newOffset) ? 0 : newOffset );
     };
 
     const onSubmit = (data: FormValuesType) => {

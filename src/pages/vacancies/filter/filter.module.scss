@@ -20,7 +20,6 @@
     border: 1px solid #EAEBED;
     border-radius: 12px;
     padding: 20px;
-    overflow: hidden;
     transition: max-height .2s;
 
 
@@ -138,7 +137,7 @@
         .openList {
           border: 1px solid #EAEBED;
           transition: 1s;
-          max-height: 400px;
+          max-height: 320px;
           overflow-y: scroll;
 
 
