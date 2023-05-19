@@ -13,6 +13,9 @@ margin-top: 40px;
     @media (max-width: $breakpoint_lg_bottom) {
       gap: 10px;
     }
+    @media (max-width: $breakpoint_sm_top) {
+      flex-direction: column;
+    }
 
   .wrapper {
     width: 100%;

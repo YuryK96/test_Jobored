@@ -1,197 +1,245 @@
 @import "src/scss/common/common";
+.filter_container {
 
-.filter {
-  width: 395px;
-  height: 320px;
-  background: white;
-  border: 1px solid #EAEBED;
-  border-radius: 12px;
-  padding: 20px;
-
-  @media (max-width: $breakpoint_md_medium) {
-    width: 310px ;
-    padding: 20px 10px;
-  }
-
-  h2 {
-    @include text(16px, 700, 19px, $black);
-    margin-bottom: 8px;
-  }
-
-
-  .title {
-    display: flex;
-    justify-content: space-between;
-
-    h1 {
-      margin: 0;
-      @include text(20px, 700, 20px, $black);
-
+  .show_filter_btn {
+  display: none;
+    @include button();
+    width: 100%;
+    height: 30px;
+    @include text(15px,500,10px,white);
+    @media (max-width: $breakpoint_sm_top) {
+      display: block;
     }
 
-    .reset {
-      display: flex;
-      justify-content: end;
-      width: 100%;
-      cursor: pointer;
-
-      span {
-        @include text(14px, 500, 20px, #ACADB9);
-        margin: auto 4px;
-      }
-
-      img {
-        width: 16px;
-        height: 16px;
-        margin: auto 0;
-      }
-
-    }
   }
 
-  .industry {
-    margin-top: 32px;
+  .filter {
+    width: 275px;
+    max-height: 320px;
+    background: white;
+    border: 1px solid #EAEBED;
+    border-radius: 12px;
+    padding: 20px;
+    overflow: hidden;
+    transition: max-height .2s;
 
 
-    .industry_input {
-      cursor: pointer;
+    @media (max-width: $breakpoint_md_medium) {
+      width: 225px ;
+      padding: 20px 10px;
+    }
+    @media (max-width: $breakpoint_sm_top) {
+      width: calc(100% - 20px);
+    }
 
-      span {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-      }
+    h2 {
+      @include text(16px, 700, 19px, $black);
+      margin-bottom: 8px;
+    }
 
 
-      @include input;
+    .title {
       display: flex;
-      position: relative;
       justify-content: space-between;
 
+      h1 {
+        margin: 0;
+        @include text(20px, 700, 20px, $black);
 
-      span {
-        display: block;
-        margin: auto 0;
-
-        .grayText {
-          color: $grey;
-        }
-
-        .blackText {
-          color: $black;
-        }
-
-        @include text(14px, 400, 20px, $grey)
       }
 
-      .list {
-
-        z-index: 3;
-        position: absolute;
-        margin: 32px 0 0 -13px;
-        width: 275px;
-        background: white;
-        border: 0px solid #EAEBED;
-        border-radius: 12px;
-        max-height: 0;
-        transition: .3s;
-        overflow: hidden;
+      .reset {
+        display: flex;
+        justify-content: end;
+        width: 100%;
+        cursor: pointer;
 
         span {
-          margin: 2px 2px 2px 4px;
-          color: $black;
+          @include text(14px, 500, 20px, #ACADB9);
+          margin: auto 4px;
 
-          &:hover {
-            color: $mainBlue;
+          @media (max-width: $breakpoint_X-small_small) {
+            font-size: 12px;
+          }
+        }
 
+        img {
+          width: 16px;
+          height: 16px;
+          margin: auto 0;
+        }
+
+      }
+    }
+
+    .industry {
+      margin-top: 32px;
+
+
+      .industry_input {
+        cursor: pointer;
+
+        span {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+
+
+        @include input;
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+
+
+        span {
+          display: block;
+          margin: auto 0;
+
+          .grayText {
+            color: $grey;
+          }
+
+          .blackText {
+            color: $black;
+          }
+
+          @include text(14px, 400, 20px, $grey);
+
+          @media (max-width: $breakpoint_X-small_small) {
+            font-size: 12px;
+          }
+        }
+
+        .list {
+
+          z-index: 3;
+          position: absolute;
+          margin: 32px 0 0 -13px;
+          width: 275px;
+          background: white;
+          border: 0px solid #EAEBED;
+          border-radius: 12px;
+          max-height: 0;
+          transition: .3s;
+          overflow: hidden;
+
+          span {
+            margin: 2px 2px 2px 4px;
+            color: $black;
+
+            &:hover {
+              color: $mainBlue;
+
+            }
+          }
+        }
+
+        .openList {
+          border: 1px solid #EAEBED;
+          transition: 1s;
+          max-height: 400px;
+          overflow-y: scroll;
+
+
+        }
+      }
+
+      .blueBorder {
+        border: 1px solid $mainBlue;
+      }
+
+    }
+
+    .salary {
+      width: 100%;
+
+      h2 {
+        margin-top: 20px;
+
+      }
+
+
+      .input_container {
+        position: relative;
+        display: flex;
+
+        &:last-child {
+          margin-top: 8px;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+          display: none;
+
+        }
+
+        input {
+
+          &:focus {
+            outline: none;
+            border: 1px solid $mainBlue;
+
+          }
+          @include input;
+          width: 100%;
+          font-size: 16px;
+
+          &::placeholder {
+            @include text(14px, 400, 20px, $grey);
+            @media (max-width: $breakpoint_X-small_small) {
+              font-size: 12px;
+            }
+          }
+
+
+        }
+
+        .arrows_container {
+          position: absolute;
+          display: flex;
+          flex-direction: column;
+          margin-left: calc(100% - 27px) ;
+
+          img {
+            cursor: pointer;
           }
         }
       }
 
-      .openList {
-        border: 1px solid #EAEBED;
-        transition: 1s;
-        max-height: 400px;
-        overflow-y: scroll;
+    }
 
+    .error {
+      @include text(14px, 400, 14px, red);
+      text-align: center;
+      height: 12px;
+      margin-top: 1px;
+    }
 
+    .button {
+      @include button;
+      @include text(14px, 500, 0, white);
+      margin-top: 7px;
+      width: 100%;
+      height: 40px;
+
+      @media (max-width: $breakpoint_X-small_medium) {
+        height: 30px;
+        font-size: 12px;
       }
+
     }
 
-    .blueBorder {
-      border: 1px solid $mainBlue;
-    }
 
   }
 
-  .salary {
-  width: 100%;
-
-    h2 {
-      margin-top: 20px;
-
+  .closeFilter {
+    @media (max-width: $breakpoint_sm_top) {
+      max-height: 0;
+      padding: 0 10px;
+      transition: .2s ease;
+      border: none;
     }
-
-
-    .input_container {
-      position: relative;
-      display: flex;
-
-      &:last-child {
-        margin-top: 8px;
-      }
-
-      input[type=number]::-webkit-inner-spin-button,
-      input[type=number]::-webkit-outer-spin-button {
-        display: none;
-
-      }
-
-      input {
-
-        &:focus {
-          outline: none;
-          border: 1px solid $mainBlue;
-
-        }
-        @include input;
-        width: 100%;
-        font-size: 16px;
-
-        &::placeholder {
-          @include text(14px, 400, 20px, $grey)
-        }
-
-
-      }
-
-      .arrows_container {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        margin-left: calc(100% - 27px) ;
-
-        img {
-          cursor: pointer;
-        }
-      }
-    }
-
-  }
-
-  .error {
-    @include text(14px, 400, 14px, red);
-    text-align: center;
-    height: 12px;
-    margin-top: 1px;
-  }
-
-  .button {
-    @include button;
-    @include text(14px, 500, 0, white);
-    margin-top: 7px;
-    width: 100%;
-    height: 40px;
 
   }
 

@@ -2,11 +2,20 @@
 
 .favorites {
 
-  margin: 40px var(--paddingLayout) 0;
+  @include paddingLayoutVar();
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 81vh;
+
+  @media (max-width: $breakpoint_lg_bottom) {
+    margin-top: 15px;
+  }
+  @media (max-width: $breakpoint_sm_small) {
+    padding-right: 0;
+    padding-left: 0;
+  }
 
   .wrapper_pagination {
     margin-bottom: 40px;

@@ -13,6 +13,9 @@
   @media (max-width: $breakpoint_lg_bottom) {
     font-size: calc( $fontSize - 2px );
   }
+  @media (max-width: $breakpoint_X-small_small) {
+    font-size: calc( $fontSize - 4px );
+  }
 }
 
 
@@ -31,4 +34,6 @@
   border: none;
   background: $mainBlue;
   cursor: pointer;
+
+
 }

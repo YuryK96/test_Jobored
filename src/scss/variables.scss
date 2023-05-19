@@ -15,25 +15,46 @@ $breakpoint_lg: 1100px;
 $breakpoint_lg_bottom: 1000px;
 $breakpoint_md: 991px;
 $breakpoint_md_medium: 840px;
-$breakpoint_sm: 840px;
+$breakpoint_sm_top: 767px;
+$breakpoint_sm_medium: 600px;
+$breakpoint_sm_small: 550px;
+$breakpoint_X-small_top: 440px;
+$breakpoint_X-small_medium: 420px;
+$breakpoint_X-small_small: 370px;
 
 
-:root {
-  --paddingLayout: 162px;
-  --paddingHeader: 23px 162px;
-}
 
-@media (max-width: $breakpoint_xl) {
+@mixin paddingLayoutVar () {
+  padding: 0 162px;
 
-  :root {
-    --paddingLayout: 112px;
-    --paddingHeader: 20px 112px;
+  @media (max-width: $breakpoint_xl) {
+    padding: 0 112px;
+  }
+
+  @media (max-width: $breakpoint_lg) {
+    padding: 0 30px;
+
+  } @media (max-width: $breakpoint_X-small_medium) {
+    padding: 0 15px;
+
   }
 }
-@media (max-width: $breakpoint_lg) {
 
-  :root {
-    --paddingLayout: 30px;
-    --paddingHeader: 15px 30px;
+
+@mixin paddingHeaderVar () {
+  padding: 23px 162px;;
+
+  @media (max-width: $breakpoint_xl) {
+    padding: 20px 112px;
+  }
+
+  @media (max-width: $breakpoint_lg) {
+    padding: 15px 30px;
+
+  }
+  @media (max-width: $breakpoint_X-small_medium) {
+    padding: 10px 15px;
+
   }
 }
+

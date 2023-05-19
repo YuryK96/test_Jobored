@@ -8,7 +8,7 @@
 
 
   .container {
-    padding: 0 var(--paddingLayout);
+    @include paddingLayoutVar();
    min-height: calc(100vh - 130px);
 
   }

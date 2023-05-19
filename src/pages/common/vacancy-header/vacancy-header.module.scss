@@ -61,6 +61,10 @@
     .name{
       @include text(28px,700,34px,$black);
 
+      @media (max-width: $breakpoint_X-small_top) {
+        @include text(21px,700,20px,$black);
+      }
+
     }
   }
 

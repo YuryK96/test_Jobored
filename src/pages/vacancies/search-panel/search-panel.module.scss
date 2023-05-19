@@ -24,7 +24,10 @@ width: 100%;
         padding: 4px 6px;
         border: none;
         &::placeholder {
-          @include text(14px,400,21px,$grey)
+          @include text(14px,400,21px,$grey);
+          @media (max-width: $breakpoint_X-small_small) {
+            font-size: 12px;
+          }
         }
         &:focus {
           outline: none;

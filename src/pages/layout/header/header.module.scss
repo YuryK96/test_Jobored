@@ -1,12 +1,30 @@
-@import "src/scss/variables";
-@import "src/scss/mixin";
+@import "src/scss/common/common";
 
 .header {
   background: white;
-  padding: var(--paddingHeader);
+  @include paddingHeaderVar();
 
   .container {
     display: flex;
+
+    .logo {
+
+      a {
+        @media (max-width: $breakpoint_X-small_top) {
+          display: flex;
+          justify-content: start;
+          align-items: center;
+        }
+
+        img {
+          @media (max-width: $breakpoint_X-small_top) {
+            width: 90px;
+          }
+
+        }
+      }
+
+    }
 
     nav {
       margin: auto;
@@ -15,17 +33,23 @@
       display: flex;
       justify-content: space-between;
 
+      @media (max-width: $breakpoint_sm_medium) {
+        justify-content: space-around;
+      }
+
       span {
         .active {
           color: $mainBlue;
-            pointer-events: none;
+          pointer-events: none;
 
         }
+
         a {
           @include text(16px, 500, 20px, black);
           padding-bottom: 2px;
+
           &:hover {
-           border-bottom: 1px solid  $mainBlue;
+            border-bottom: 1px solid $mainBlue;
           }
         }
 
