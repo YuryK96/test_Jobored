@@ -17,6 +17,10 @@ export function useIsPending() {
             if(!isPending)
             setIsPending(true)
 
+        } else if (pending.auth) {
+            if(!isPending)
+            setIsPending(true)
+
         } else {
             if(isPending)
             setIsPending(false)

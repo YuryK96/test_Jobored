@@ -1,15 +1,10 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import {AppDispatch, AppStateType} from "../store";
-import {auth} from "../../api/auth";
 import {AxiosError} from "axios/index";
 import {createAppAsyncThunk} from "../../api/api";
 import {vacanciesAPI} from "../../api/vacancies";
 import {FilterType} from "../../api/api-type";
 
 
-
-
-export const getCategories = createAppAsyncThunk('categories',
+export const getCategoriesThunk = createAppAsyncThunk('categories',
     async (_, {rejectWithValue}) => {
         try {
             const response = await  vacanciesAPI.getCategories().then( (res)=> res )
@@ -20,7 +15,7 @@ export const getCategories = createAppAsyncThunk('categories',
         }
     }
 )
-export const getVacancies = createAppAsyncThunk('vacancies',
+export const getVacanciesThunk = createAppAsyncThunk('vacancies',
     async (filter:FilterType, {rejectWithValue}) => {
         try {
             const response = await  vacanciesAPI.getVacancies(filter).then( (res)=> res )

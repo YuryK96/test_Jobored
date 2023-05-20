@@ -5,12 +5,15 @@ import {Action, ActionCreator} from "@reduxjs/toolkit";
 export const setTokenInLS = (token: string) => {
     localStorage.setItem("token", token);
 }
+export const getTokenInLS = () => localStorage.getItem("token");
+export const getRefreshTokenInLS = () => localStorage.getItem("refresh_token");
+
 export const setRefreshTokenInLS = (token: string) => {
     localStorage.setItem("refresh_token", token);
 }
 
 
-export const addFavoriteVacancyLS:AddFavoriteVacancyType = (vacancy ,dispatch, addFavoritesAC) => {
+export const addFavoriteVacancyLS: AddFavoriteVacancyType = (vacancy, dispatch, addFavoritesAC) => {
     if (!localStorage.getItem('favorites')) {
         localStorage.setItem('favorites', JSON.stringify([vacancy]))
         dispatch(addFavoritesAC([vacancy]))
@@ -23,7 +26,7 @@ export const addFavoriteVacancyLS:AddFavoriteVacancyType = (vacancy ,dispatch, a
 
     }
 }
-export const removeFavoriteVacancyLS:RemoveFavoriteVacancyType = (id, dispatch, addFavoritesAC) => {
+export const removeFavoriteVacancyLS: RemoveFavoriteVacancyType = (id, dispatch, addFavoritesAC) => {
     if (localStorage.getItem('favorites') && id) {
         const favorites: VacancyHeaderType[] = JSON.parse(localStorage.getItem('favorites') || '[]');
         const newFavorites = favorites.filter((vacancy) => vacancy.id !== id
@@ -35,11 +38,10 @@ export const removeFavoriteVacancyLS:RemoveFavoriteVacancyType = (id, dispatch, 
     }
 }
 
-export  const getFavoriteVacanciesLS = ()=>  JSON.parse(localStorage.getItem('favorites') || '[]')
+export const getFavoriteVacanciesLS = () => JSON.parse(localStorage.getItem('favorites') || '[]')
 
 
+type RemoveFavoriteVacancyType = (id: number | undefined, dispatch: AppDispatch, addFavoritesAC: ActionCreator<Action>) => void
 
-type RemoveFavoriteVacancyType = (id: number | undefined, dispatch:AppDispatch, addFavoritesAC:ActionCreator<Action>)=> void
-
-type AddFavoriteVacancyType = (vacancy: VacancyHeaderType, dispatch:AppDispatch, addFavoritesAC:ActionCreator<Action>)=> void
+type AddFavoriteVacancyType = (vacancy: VacancyHeaderType, dispatch: AppDispatch, addFavoritesAC: ActionCreator<Action>) => void
 

@@ -1,6 +1,7 @@
 import {AnyAction, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {InitialState, VacancyHeaderType} from "./vacancies-type";
-import {getCategories, getVacancies} from "./vacancies-thunk";
+import {getCategoriesThunk, getVacanciesThunk} from "./vacancies-thunk";
+import {authorizationThunk} from "../auth/auth-thunk";
 
 
 const vacanciesReducer = createSlice({
@@ -13,7 +14,9 @@ const vacanciesReducer = createSlice({
             error: null,
             isPending: {
                 vacancies: null,
-                categories: null
+                categories: null,
+                auth: false,
+
             },
         } as InitialState,
         reducers: {
@@ -23,7 +26,7 @@ const vacanciesReducer = createSlice({
             },
         },
         extraReducers: (builder) => {
-            builder.addCase(getCategories.fulfilled, (state, action) => {
+            builder.addCase(getCategoriesThunk.fulfilled, (state, action) => {
                 if (action.payload) {
                     state.categories = action.payload
 
@@ -47,17 +50,22 @@ const vacanciesReducer = createSlice({
 
                 }
                 state.isPending.categories = false
-            }).addCase(getVacancies.fulfilled, (state, action) => {
+            }).addCase(getVacanciesThunk.fulfilled, (state, action) => {
                 state.vacancies = action.payload.objects
                 state.isPending.vacancies = false
-            }).addCase(getVacancies.pending, (state, action) => {
+            }).addCase(getVacanciesThunk.pending, (state, action) => {
                 state.isPending.vacancies = true
-            }).addCase(getCategories.pending, (state, action) => {
+            }).addCase(getCategoriesThunk.pending, (state, action) => {
                 state.isPending.categories = true
+            }).addCase(authorizationThunk.pending, (state, action) => {
+                state.isPending.auth = true
+            }).addCase(authorizationThunk.fulfilled, (state, action) => {
+                state.isPending.auth = false
             }).addMatcher((action: AnyAction) => action.type.endsWith('rejected'), (state, action) => {
                 state.error = action.payload;
                 state.isPending.categories = false
                 state.isPending.vacancies = false
+                state.isPending.auth = false
 
             })
         }

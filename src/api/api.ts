@@ -1,6 +1,7 @@
 import axios from "axios";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {AppDispatch, AppStateType} from "../redux-toolkit/store";
+import {getTokenInLS} from "../local-storage/local-storage";
 
 
 const BASE_URL = 'https://startup-summer-2023-proxy.onrender.com/2.0/'
@@ -32,7 +33,7 @@ export const instance = axios.create({
 });
 
 instance.interceptors.request.use((config) => {
-    config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+    config.headers.Authorization = `Bearer ${getTokenInLS()}`;
     return config;
 });
 

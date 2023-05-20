@@ -6,7 +6,7 @@ import {Content} from "./content";
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch} from "../../redux-toolkit/store";
-import {getVacancies} from "../../redux-toolkit/vacancies/vacancies-thunk";
+import {getVacanciesThunk} from "../../redux-toolkit/vacancies/vacancies-thunk";
 import {getVacanciesSelector} from "../../redux-toolkit/vacancies/vacancies-selectors";
 
 export const Vacancies: FC = () => {
@@ -43,7 +43,7 @@ export const Vacancies: FC = () => {
     };
 
     const onSubmit = (data: FormValuesType) => {
-        dispatch(getVacancies({
+        dispatch(getVacanciesThunk({
             catalogues: String(industryKey),
             keyword: data.search ? data.search : '',
             payment_from: data.numberFrom ? data.numberFrom : '',

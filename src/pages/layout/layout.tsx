@@ -5,8 +5,8 @@ import {Outlet} from "react-router-dom";
 import {Header} from "./header";
 import {useIsAuth} from "../../hooks/is-auth-hook";
 import {AppDispatch} from "../../redux-toolkit/store";
-import {authorization} from "../../redux-toolkit/auth/auth-thunk";
-import {getCategories, getVacancies} from "../../redux-toolkit/vacancies/vacancies-thunk";
+import {authorizationThunk} from "../../redux-toolkit/auth/auth-thunk";
+import {getCategoriesThunk, getVacanciesThunk} from "../../redux-toolkit/vacancies/vacancies-thunk";
 import {useIsPending} from "../../hooks/is-pending-hook";
 import {Loader} from "../common/loader";
 import {getFavoriteVacanciesLS} from "../../local-storage/local-storage";
@@ -16,13 +16,12 @@ export const Layout: FC = () => {
     const isAuth = useIsAuth()
     const dispatch = useDispatch<AppDispatch>()
     const isPending = useIsPending()
-
     useEffect(() => {
         if (!isAuth) {
-            dispatch(authorization()).then(
+            dispatch(authorizationThunk()).then(
                 () => {
-                    dispatch(getCategories());
-                    dispatch(getVacancies({
+                    dispatch(getCategoriesThunk());
+                    dispatch(getVacanciesThunk({
                             payment_to: '',
                             payment_from: '',
                             keyword: '',
@@ -32,8 +31,8 @@ export const Layout: FC = () => {
                 })
 
         } else {
-            dispatch(getCategories())
-            dispatch(getVacancies({
+            dispatch(getCategoriesThunk())
+            dispatch(getVacanciesThunk({
                 payment_to: '',
                 payment_from: '',
                 keyword: '',

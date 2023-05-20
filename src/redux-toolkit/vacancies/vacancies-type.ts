@@ -9,7 +9,8 @@ export  type InitialState = {
     error: null | string,
     isPending: {
         vacancies: null | boolean,
-        categories: null | boolean
+        categories: null | boolean,
+        auth: boolean
     }
 }
 
