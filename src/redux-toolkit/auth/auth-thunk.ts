@@ -13,19 +13,31 @@ export const authorizationThunk = createAppAsyncThunk('auth',
             })
         } catch (error) {
             const err = error as AxiosError;
-            if (err.response?.status === 410 || err.response?.status === 401){
+            if (err.response?.status === 410 || err.response?.status === 401) {
                 const refreshToken = getRefreshTokenInLS()
-                if(refreshToken) {
-                    const response = await authApi.updateToken(refreshToken).then(
-                        (res) => {
-                        setTokenInLS(res.access_token)
-                        setRefreshTokenInLS(res.refresh_token)
-                    })
+                if (refreshToken) {
+                    useRefreshTokenThunk(refreshToken)
                 }
             }
-
             return rejectWithValue(err.message)
         }
     }
 )
 
+
+
+const useRefreshTokenThunk = createAppAsyncThunk('auth',
+    async (refreshToken: string, {rejectWithValue}) => {
+        try {
+
+            const response = await authApi.updateToken(refreshToken).then(
+                (res) => {
+                    setTokenInLS(res.access_token)
+                    setRefreshTokenInLS(res.refresh_token)
+                })
+        } catch (error) {
+            const err = error as AxiosError;
+            return rejectWithValue(err.message)
+        }
+
+    })

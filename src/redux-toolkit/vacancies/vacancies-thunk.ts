@@ -26,3 +26,14 @@ export const getVacanciesThunk = createAppAsyncThunk('vacancies',
         }
     }
 )
+export const addElseVacanciesThunk = createAppAsyncThunk('addNewVacancies',
+    async (filter:FilterType, {rejectWithValue}) => {
+        try {
+            const response = await  vacanciesAPI.getVacancies(filter).then( (res)=> res )
+            return  response
+        } catch (error) {
+            const err = error as AxiosError;
+            return rejectWithValue(err.message)
+        }
+    }
+)

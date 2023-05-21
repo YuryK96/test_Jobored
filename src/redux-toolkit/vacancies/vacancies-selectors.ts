@@ -5,3 +5,4 @@ export  const getCategoryNamesKeysSelector = (state:AppStateType)=> state.vacanc
 export  const getVacanciesSelector = (state:AppStateType)=> state.vacanciesBranch.vacancies ? state.vacanciesBranch.vacancies : []
 export  const isPendingSelector = (state:AppStateType)=> state.vacanciesBranch.isPending
 export  const getFavoritesSelector = (state:AppStateType)=> state.vacanciesBranch.favorites
+export  const getVacanciesTotalSelector = (state:AppStateType)=> state.vacanciesBranch.vacanciesTotal

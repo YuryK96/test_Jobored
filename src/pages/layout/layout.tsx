@@ -25,7 +25,8 @@ export const Layout: FC = () => {
                             payment_to: '',
                             payment_from: '',
                             keyword: '',
-                            catalogues: ''
+                            catalogues: '',
+                        page: 0
                         })
                     )
                 })
@@ -36,7 +37,8 @@ export const Layout: FC = () => {
                 payment_to: '',
                 payment_from: '',
                 keyword: '',
-                catalogues: ''
+                catalogues: '',
+                page: 0
             }))
         }
     }, [isAuth, dispatch])

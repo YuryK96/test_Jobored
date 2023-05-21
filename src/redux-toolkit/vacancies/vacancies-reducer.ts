@@ -1,6 +1,6 @@
 import {AnyAction, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {InitialState, VacancyHeaderType} from "./vacancies-type";
-import {getCategoriesThunk, getVacanciesThunk} from "./vacancies-thunk";
+import {addElseVacanciesThunk, getCategoriesThunk, getVacanciesThunk} from "./vacancies-thunk";
 import {authorizationThunk} from "../auth/auth-thunk";
 
 
@@ -8,6 +8,7 @@ const vacanciesReducer = createSlice({
         name: 'vacancies',
         initialState: {
             vacancies: null,
+            vacanciesTotal: null,
             categories: null,
             categoriesNamesKeys: [],
             favorites: [],
@@ -52,8 +53,17 @@ const vacanciesReducer = createSlice({
                 state.isPending.categories = false
             }).addCase(getVacanciesThunk.fulfilled, (state, action) => {
                 state.vacancies = action.payload.objects
+                state.vacanciesTotal = action.payload.total
+                state.isPending.vacancies = false
+            }).addCase(addElseVacanciesThunk.fulfilled, (state, action) => {
+                if(state.vacancies) {
+                    state.vacancies = [...state.vacancies, ...action.payload.objects]
+                    state.vacanciesTotal = action.payload.total
+                }
                 state.isPending.vacancies = false
             }).addCase(getVacanciesThunk.pending, (state, action) => {
+                state.isPending.vacancies = true
+            }).addCase(addElseVacanciesThunk.pending, (state, action) => {
                 state.isPending.vacancies = true
             }).addCase(getCategoriesThunk.pending, (state, action) => {
                 state.isPending.categories = true

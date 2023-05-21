@@ -7,6 +7,7 @@ import {getTokenInLS} from "../local-storage/local-storage";
 const BASE_URL = 'https://startup-summer-2023-proxy.onrender.com/2.0/'
 
 
+
 export const createAppAsyncThunk = createAsyncThunk.withTypes<{
     state: AppStateType
     dispatch: AppDispatch

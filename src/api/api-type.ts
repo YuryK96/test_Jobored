@@ -7,7 +7,12 @@ export type AuthResponseType = {
     tt1: number
 }
 
-export type FilterType = { payment_from: string, payment_to: string, keyword: string, catalogues: string }
+export type FilterType = {
+    payment_from: string,
+    payment_to: string,
+    keyword: string,
+    catalogues: string
+    page: number}
 
 export type GetCategoriesResponseType = {
     title_rus: string
