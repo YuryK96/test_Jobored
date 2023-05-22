@@ -53,7 +53,7 @@ export const VacancyHeader: FC<VacancyHeaderType> = ({
                 } className={s.star}><img src={isFavorite ? blueStar : star} alt='star'/></div>
         </div>
         <div className={s.conditions}><span
-            className={s.money}>з/п от {payment_from} {currency} </span> <span
+            className={s.money}>з/п  {payment_from ? `от ${payment_from}` : 'не указано'} {payment_from ? currency : '' } </span> <span
             className={s.circle}>•</span> <span
             className={s.schedule}>{type_of_work}</span>
         </div>

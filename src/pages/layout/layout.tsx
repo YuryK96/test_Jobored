@@ -1,7 +1,7 @@
-import {FC, useEffect} from "react";
+import {FC, useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import s from './layout.module.scss'
-import {Outlet} from "react-router-dom";
+import {Outlet, useLocation} from "react-router-dom";
 import {Header} from "./header";
 import {useIsAuth} from "../../hooks/is-auth-hook";
 import {AppDispatch} from "../../redux-toolkit/store";
@@ -16,6 +16,27 @@ export const Layout: FC = () => {
     const isAuth = useIsAuth()
     const dispatch = useDispatch<AppDispatch>()
     const isPending = useIsPending()
+    const {pathname} = useLocation()
+    const [enteredSearchData, setEnteredSearchData] = useState<EnteredSearchDataType>({
+        industry: '',
+        numberFrom: '',
+        industryKey: '',
+        numberUpTo: '',
+        search: ''
+    })
+    const [actualPage, setActualPage] = useState(0);
+
+    const updateEnteredSearchData = (data:EnteredSearchDataType)=> {
+        setEnteredSearchData( data)
+    }
+    const setActualPageInPagination = (page: number) => {
+        setActualPage(page)
+    }
+
+    useEffect( ()=>{
+        window.scrollTo(0,0)
+    }, [pathname] )
+
     useEffect(() => {
         if (!isAuth) {
             dispatch(authorizationThunk()).then(
@@ -26,7 +47,7 @@ export const Layout: FC = () => {
                             payment_from: '',
                             keyword: '',
                             catalogues: '',
-                        page: 0
+                            page: 0
                         })
                     )
                 })
@@ -44,13 +65,13 @@ export const Layout: FC = () => {
     }, [isAuth, dispatch])
 
 
-    useEffect( ()=>{
+    useEffect(() => {
         const favorites = getFavoriteVacanciesLS()
         if (favorites) {
             dispatch(addFavoritesAC(favorites))
         }
 
-    },[dispatch] )
+    }, [dispatch])
 
 
     return <div className={s.layout}>
@@ -60,8 +81,16 @@ export const Layout: FC = () => {
 
         <Header/>
         <div className={s.container}>
-            <Outlet/>
+            <Outlet context={ [enteredSearchData,updateEnteredSearchData,setActualPageInPagination,actualPage] }/>
         </div>
 
     </div>
+}
+
+export type EnteredSearchDataType = {
+    numberFrom: string
+    numberUpTo: string
+    search: string
+    industry: string
+    industryKey: number | string
 }

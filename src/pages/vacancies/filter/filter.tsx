@@ -8,6 +8,7 @@ import arrow_up_salary from '../../../assets/img/arrow_up_salary.svg'
 import {FormValuesType} from "../vacancies";
 import {useSelector} from 'react-redux'
 import {getCategoryNamesKeysSelector} from "../../../redux-toolkit/vacancies/vacancies-selectors";
+import {EnteredSearchDataType} from "../../layout/layout";
 
 export const Filter: FC<FilterType> = ({
                                            register,
@@ -15,27 +16,36 @@ export const Filter: FC<FilterType> = ({
                                            setValue,
                                            getValues,
                                            isValid,
-                                           trigger
+                                           trigger,
+                                           industry,
+                                           chooseIndustry,
+                                           enteredSearchData,
+                                           updateEnteredSearchData
+
                                        }) => {
     const [isOpenList, setIsOpenList] = useState<boolean>(false)
     const categories = useSelector(getCategoryNamesKeysSelector)
-    const [industry, setIndustry] = useState<string>('')
+
     const [isOpenFilter, setIsOpenFilter] = useState<boolean>(true)
 
     const toggleShowingFilter = () => {
         setIsOpenFilter(!isOpenFilter)
     }
 
-        const
-    chooseIndustry = (industry: string) => {
-        setIndustry(industry)
-    }
 
     const filterFieldsReset = () => {
         setValue('numberFrom', '');
         setValue('numberUpTo', '');
         chooseIndustry('');
         chooseIndustryKey('');
+        updateEnteredSearchData({
+                search: enteredSearchData.search,
+                numberUpTo: '',
+                numberFrom: '',
+                industry : '',
+                industryKey : '',
+            }
+        )
     }
     const toggleList = () => {
         setIsOpenList(!isOpenList)
@@ -57,7 +67,8 @@ export const Filter: FC<FilterType> = ({
     }
 
     return <aside className={s.filter_container}>
-        <button style={ {background: isOpenFilter ? '#ACADB9' : '' } } type='button' onClick={toggleShowingFilter} className={s.show_filter_btn}>{ isOpenFilter ? 'Скрыть фильтр' : 'Показать фильтр' }</button>
+        <button style={{background: isOpenFilter ? '#ACADB9' : ''}} type='button' onClick={toggleShowingFilter}
+                className={s.show_filter_btn}>{isOpenFilter ? 'Скрыть фильтр' : 'Показать фильтр'}</button>
         <div className={`${s.filter} ${isOpenFilter ? '' : s.closeFilter}`}>
             <div className={s.title}><h1>Фильтры</h1>
                 <div onClick={filterFieldsReset} className={s.reset}><span>Сбросить все</span> <img src={cross}
@@ -90,6 +101,7 @@ export const Filter: FC<FilterType> = ({
                 <div className={s.input_container}><input
                     data-elem="salary-from-input"
                     onKeyDown={(evt: React.KeyboardEvent<HTMLInputElement>) => ["e", "E", "+", "-", "."].includes(evt.key) && evt.preventDefault()}
+                    defaultValue={enteredSearchData.numberFrom}
                     {...register('numberFrom', {
                         validate: {
                             correctNumber: (value: string, formValues) => {
@@ -110,6 +122,7 @@ export const Filter: FC<FilterType> = ({
                 <div className={s.input_container}><input
                     data-elem="salary-to-input"
                     onKeyDown={(evt: React.KeyboardEvent<HTMLInputElement>) => ["e", "E", "+", "-", "."].includes(evt.key) && evt.preventDefault()}
+                    defaultValue={enteredSearchData.numberUpTo}
                     {...register('numberUpTo', {
                         validate: {
                             correctNumber: (value: string, formValues) => {
@@ -144,5 +157,9 @@ type FilterType = {
 
     isValid: boolean
     trigger: UseFormTrigger<FormValuesType>
-
+    chooseIndustry: (industry: string)
+        => void
+    industry: string
+    enteredSearchData: EnteredSearchDataType
+    updateEnteredSearchData: (data:EnteredSearchDataType)=>void
 }

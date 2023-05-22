@@ -10,9 +10,8 @@ import {getFavoritesSelector} from "../../redux-toolkit/vacancies/vacancies-sele
 
 
 export const Vacancy: FC = () => {
-let {state }: { state: PropsType } = useLocation()
+const { state }: { state: PropsType } = useLocation()
     const favorites = useSelector(getFavoritesSelector)
-
 
     return <div className={s.vacancy}>
         <VacancyHeader isPageVacancy={true} id={state.id} favorites={favorites} vacancyRichText={state.vacancyRichText} town={state.town} currency={state.currency} payment_from={state.payment_from} profession={state.profession} type_of_work={state.type_of_work}/>

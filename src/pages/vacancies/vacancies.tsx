@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from "react";
+import {FC, RefObject, useEffect, useRef, useState} from "react";
 import s from './vacancies.module.scss'
 import {Filter} from "./filter";
 import {SearchPanel} from "./search-panel";
@@ -8,14 +8,20 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch} from "../../redux-toolkit/store";
 import {addElseVacanciesThunk, getVacanciesThunk} from "../../redux-toolkit/vacancies/vacancies-thunk";
 import {getVacanciesSelector, getVacanciesTotalSelector} from "../../redux-toolkit/vacancies/vacancies-selectors";
+import {useOutletContext} from "react-router-dom";
+import {EnteredSearchDataType} from "../layout/layout";
 
 export const Vacancies: FC = () => {
-    const [industryKey, setIndustryKey] = useState<number | string>('')
-    const [actualPage, setActualPage] = useState(0);
+    const [enteredSearchData, updateEnteredSearchData, setActualPageInPagination, actualPage] = useOutletContext<OutletPropsType>();
+    const [industryKey, setIndustryKey] = useState<number | string>(enteredSearchData.industryKey)
+
     const [requestPage, setRequestPage] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
+    const [industry, setIndustry] = useState<string>(enteredSearchData.industry)
     const vacancies = useSelector(getVacanciesSelector)
     const vacanciesTotal = useSelector(getVacanciesTotalSelector)
+    const anchorRef = useRef<HTMLHeadingElement>(null)
+
     const dispatch = useDispatch<AppDispatch>()
     const {
         register,
@@ -23,42 +29,48 @@ export const Vacancies: FC = () => {
         getValues,
         handleSubmit,
         trigger,
-        formState: { isValid}
+        formState: {isValid}
     } = useForm<FormValuesType>({mode: "onChange"})
+
 
     // number of vacancies per page
     const itemsPerPage = 4;
     const pageCount = Math.ceil(vacancies.length / itemsPerPage);
 
 
-    console.log(vacanciesTotal, 'vacanciesTotal', vacancies.length, 'vacancies.length')
+    // Adding subloading Vacancies when you are on the last page
+    useEffect(() => {
 
-
-
-    // Adding else Vacancies when you are on the last page
-    useEffect( ()=>{
-
-        if(actualPage+1 === pageCount && vacanciesTotal && vacancies.length !== vacanciesTotal ){
+        if (actualPage + 1 === pageCount && vacanciesTotal && vacancies.length !== vacanciesTotal) {
 
             dispatch(addElseVacanciesThunk({
                 catalogues: String(industryKey),
                 keyword: getValues('search') ? getValues('search') : '',
                 payment_from: getValues('numberFrom') ? getValues('numberFrom') : '',
                 payment_to: getValues('numberUpTo') ? getValues('numberUpTo') : '',
-                page: requestPage+1,
-            })).then( ()=>  addOnePageForRequest() )
+                page: requestPage + 1,
+            })).then(() => {
+                addOnePageForRequest()
+            })
 
         }
 
 
-    }, [actualPage,pageCount] )
+    }, [actualPage, pageCount])
 
-    const addOnePageForRequest = ()=> {
-        setRequestPage(requestPage+1)
+    const addOnePageForRequest = () => {
+        setRequestPage(requestPage + 1)
     }
 
-    const setActualPageInPagination = (page: number) => {
-        setActualPage(page)
+
+    const scrollToAnchorRef = () => {
+        if (anchorRef.current) {
+            window.scrollTo(0, document.body.scrollHeight - anchorRef.current.scrollHeight)
+        }
+    }
+
+    const chooseIndustry = (industry: string) => {
+        setIndustry(industry)
     }
 
     const chooseIndustryKey = (key: number | string) => {
@@ -68,7 +80,8 @@ export const Vacancies: FC = () => {
     const handlePageClick = (event: { selected: number }) => {
         const newOffset = (event.selected * itemsPerPage) % vacancies.length;
         setActualPageInPagination(event.selected)
-        setItemOffset(  isNaN(newOffset) ? 0 : newOffset );
+        setItemOffset(isNaN(newOffset) ? 0 : newOffset);
+        scrollToAnchorRef()
     };
 
     const onSubmit = (data: FormValuesType) => {
@@ -80,17 +93,31 @@ export const Vacancies: FC = () => {
             page: 0,
         }))
         setActualPageInPagination(0)
-        handlePageClick({selected:0})
+        handlePageClick({selected: 0})
+        updateEnteredSearchData({
+            search: getValues('search') ? getValues('search') : '',
+            numberUpTo: getValues('numberUpTo') ? getValues('numberUpTo') : '',
+            numberFrom: getValues('numberFrom') ? getValues('numberFrom') : '',
+            industry,
+            industryKey,
+
+        })
+
     }
 
     return <section className={s.vacancies}>
         <form onSubmit={handleSubmit(onSubmit)}>
 
             <Filter trigger={trigger} getValues={getValues} register={register} setValue={setValue}
-                    isValid={isValid} chooseIndustryKey={chooseIndustryKey}/>
-            <div className={s.wrapper}>
-                <SearchPanel register={register}/>
-                <Content pageCount={pageCount} itemsPerPage={itemsPerPage} handlePageClick={handlePageClick} vacancies={vacancies}  itemOffset={itemOffset} setActualPageInPagination={setActualPageInPagination} actualPage={actualPage}/>
+                    chooseIndustry={chooseIndustry} industry={industry}
+                    isValid={isValid} chooseIndustryKey={chooseIndustryKey} enteredSearchData={enteredSearchData}
+                    updateEnteredSearchData={updateEnteredSearchData}
+            />
+            <div ref={anchorRef} className={s.wrapper}>
+                <SearchPanel defaultSearch={enteredSearchData.search} register={register}/>
+                <Content pageCount={pageCount} itemsPerPage={itemsPerPage} handlePageClick={handlePageClick}
+                         vacancies={vacancies} itemOffset={itemOffset}
+                         setActualPageInPagination={setActualPageInPagination} actualPage={actualPage}/>
             </div>
         </form>
 
@@ -101,4 +128,8 @@ export type  FormValuesType = {
     numberFrom: string
     numberUpTo: string
     search: string
+
 }
+
+
+type OutletPropsType = [EnteredSearchDataType, (data: EnteredSearchDataType) => void, (page: number) => void, number]

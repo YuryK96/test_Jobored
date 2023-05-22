@@ -4,7 +4,7 @@ import {UseFormRegister} from "react-hook-form";
 import {FormValuesType} from "../vacancies";
 import search from '../../../assets/img/search.svg'
 
-export const SearchPanel: FC<SearchPanelType> = ({register}) => {
+export const SearchPanel: FC<SearchPanelType> = ({register,defaultSearch}) => {
 
 
     return <div className={s.searchPanel}>
@@ -12,7 +12,7 @@ export const SearchPanel: FC<SearchPanelType> = ({register}) => {
         <div className={s.searchInput}>
             <div className={s.wrapper}>
             <div className={s.icon}><img src={search} alt='search_icon'/></div>
-            <input data-elem="search-input" placeholder='Введите название вакансии' type='search' {...register('search')} /></div>
+            <input data-elem="search-input"  defaultValue={defaultSearch} placeholder='Введите название вакансии' type='search' {...register('search')} /></div>
             <button data-elem="search-button" type='submit'>Поиск</button>
         </div>
     </div>
@@ -21,4 +21,5 @@ export const SearchPanel: FC<SearchPanelType> = ({register}) => {
 
 type SearchPanelType = {
     register: UseFormRegister<FormValuesType>
+    defaultSearch: string
 }

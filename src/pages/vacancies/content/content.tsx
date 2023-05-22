@@ -8,13 +8,12 @@ import '../../../scss/common/pagination.scss'
 import {VacancyHeader} from "../../common/vacancy-header";
 import {VacancyType} from "../../../api/api-type";
 
-export const Content: FC<ContentType> = ({actualPage, itemsPerPage, handlePageClick, itemOffset, vacancies,pageCount}) => {
+export const Content: FC<ContentType> = ({actualPage, itemsPerPage, handlePageClick, itemOffset, vacancies,pageCount,}) => {
 
     const favorites = useSelector(getFavoritesSelector)
 
     const endOffset = itemOffset + itemsPerPage;
     let currentItems = vacancies.slice(itemOffset, endOffset);
-
 
 
     if (vacancies && vacancies.length !== 0) {
@@ -38,6 +37,7 @@ export const Content: FC<ContentType> = ({actualPage, itemsPerPage, handlePageCl
                     marginPagesDisplayed={0}
                     nextLabel=">"
                     onPageChange={handlePageClick}
+
                     pageCount={pageCount}
                     forcePage={actualPage}
                     containerClassName='pagination_container'
@@ -66,5 +66,6 @@ type ContentType = {
     itemOffset: number,
     vacancies: VacancyType[]
     pageCount: number
+
 
 }
