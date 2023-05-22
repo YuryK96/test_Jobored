@@ -1,4 +1,4 @@
-import {FC, RefObject, useEffect, useRef, useState} from "react";
+import {FC, useEffect, useRef, useState} from "react";
 import s from './vacancies.module.scss'
 import {Filter} from "./filter";
 import {SearchPanel} from "./search-panel";

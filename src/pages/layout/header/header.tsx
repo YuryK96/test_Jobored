@@ -8,8 +8,10 @@ export const Header: FC = () => {
 
     return <header className={s.header}>
         <div className={s.container}>
-            <div className={s.logo}> <NavLink to='/'> <img src={logo} alt='Jobored'/></NavLink></div>
-            <nav><span> <NavLink className={ ( {isActive} )=> isActive ? s.active : ''  } to='/'>Поиск Вакансий</NavLink> </span> <span> <NavLink className={ ( {isActive} )=> isActive ? s.active : ''  }
+            <div className={s.logo}><NavLink to='/'> <img src={logo} alt='Jobored'/></NavLink></div>
+            <nav><span> <NavLink className={({isActive}) => isActive ? s.active : ''}
+                                 to='/'>Поиск Вакансий</NavLink> </span> <span> <NavLink
+                className={({isActive}) => isActive ? s.active : ''}
                 to='/favorites'>Избранное</NavLink> </span>
             </nav>
         </div>

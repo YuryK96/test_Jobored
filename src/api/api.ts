@@ -16,13 +16,6 @@ export const createAppAsyncThunk = createAsyncThunk.withTypes<{
 }>()
 
 
-export const authAxios = axios.create({
-    withCredentials: true,
-    baseURL: BASE_URL,
-    headers: {
-        "x-secret-key": "GEU4nvd3rej*jeh.eqp",
-    },
-});
 export const instance = axios.create({
     withCredentials: true,
     baseURL: BASE_URL,

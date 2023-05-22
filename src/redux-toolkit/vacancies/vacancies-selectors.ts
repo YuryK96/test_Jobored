@@ -6,3 +6,4 @@ export  const getVacanciesSelector = (state:AppStateType)=> state.vacanciesBranc
 export  const isPendingSelector = (state:AppStateType)=> state.vacanciesBranch.isPending
 export  const getFavoritesSelector = (state:AppStateType)=> state.vacanciesBranch.favorites
 export  const getVacanciesTotalSelector = (state:AppStateType)=> state.vacanciesBranch.vacanciesTotal
+export  const getAuthCodeErrorSelector = (state:AppStateType)=> state.vacanciesBranch.authCodeError

@@ -10,7 +10,7 @@ export const vacanciesAPI = {
             .then((res: AxiosResponse<GetCategoriesResponseType>) => res.data);
 
     },
-    getVacancies(filter:FilterType ) {
+    getVacancies(filter: FilterType) {
         return instance.get(`vacancies/?published=1&count=100&page=${filter.page}&keyword=${filter.keyword}&payment_from=${filter.payment_from}&payment_to=${filter.payment_to}&catalogues=${filter.catalogues}`).then((res: AxiosResponse<GetVacanciesResponseType>) => res.data)
     }
 

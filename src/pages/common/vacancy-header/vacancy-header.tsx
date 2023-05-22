@@ -22,11 +22,11 @@ export const VacancyHeader: FC<VacancyHeaderType> = ({
 
                                                      }) => {
     const dispatch = useDispatch<AppDispatch>()
-    const [isFavorite, setIsFavorite] = useState<boolean>( favorites?.some((favorite) => favorite.id === id) || false
+    const [isFavorite, setIsFavorite] = useState<boolean>(favorites?.some((favorite) => favorite.id === id) || false
     )
 
     useEffect(() => {
-        setIsFavorite( favorites?.some((favorite) => favorite.id === id
+        setIsFavorite(favorites?.some((favorite) => favorite.id === id
         ) || false)
     }, [favorites, id])
 
@@ -39,7 +39,7 @@ export const VacancyHeader: FC<VacancyHeaderType> = ({
             <div
                 data-elem={`vacancy-${id}-shortlist-button`}
                 onClick={isFavorite ? () => removeFavoriteVacancyLS(id, dispatch, addFavoritesAC) : () => addFavoriteVacancyLS({
-                    vacancyRichText,
+                        vacancyRichText,
                         profession,
                         payment_from,
                         currency,
@@ -53,9 +53,10 @@ export const VacancyHeader: FC<VacancyHeaderType> = ({
                 } className={s.star}><img src={isFavorite ? blueStar : star} alt='star'/></div>
         </div>
         <div className={s.conditions}><span
-            className={s.money}>з/п  {payment_from ? `от ${payment_from}` : 'не указано'} {payment_from ? currency : '' } </span> <span
-            className={s.circle}>•</span> <span
-            className={s.schedule}>{type_of_work}</span>
+            className={s.money}>з/п {payment_from ? `от ${payment_from}` : 'не указано'} {payment_from ? currency : ''} </span>
+            <span
+                className={s.circle}>•</span> <span
+                className={s.schedule}>{type_of_work}</span>
         </div>
         <div className={s.location}>
             <div className={s.icon}><img src={location} alt='location_icon'/></div>

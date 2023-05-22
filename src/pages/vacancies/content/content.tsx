@@ -8,7 +8,14 @@ import '../../../scss/common/pagination.scss'
 import {VacancyHeader} from "../../common/vacancy-header";
 import {VacancyType} from "../../../api/api-type";
 
-export const Content: FC<ContentType> = ({actualPage, itemsPerPage, handlePageClick, itemOffset, vacancies,pageCount,}) => {
+export const Content: FC<ContentType> = ({
+                                             actualPage,
+                                             itemsPerPage,
+                                             handlePageClick,
+                                             itemOffset,
+                                             vacancies,
+                                             pageCount,
+                                         }) => {
 
     const favorites = useSelector(getFavoritesSelector)
 
