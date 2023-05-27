@@ -13,8 +13,7 @@ export const authorizationThunk = createAppAsyncThunk('auth',
             })
         } catch (error) {
             const err = error as AxiosError;
-            if (err.response?.status)
-                return rejectWithValue(String(err.response?.status))
+            return rejectWithValue(String(err.response?.status) || err.message)
 
         }
     }
@@ -34,7 +33,7 @@ export const sendRefreshTokenThunk = createAppAsyncThunk('refresh',
             }
         } catch (error) {
             const err = error as AxiosError;
-            return rejectWithValue(err.message)
+            return rejectWithValue(String(err.response?.status) || err.message)
         }
 
     })

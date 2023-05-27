@@ -12,7 +12,6 @@ const vacanciesReducer = createSlice({
             categories: null,
             categoriesNamesKeys: [],
             favorites: [],
-            authCodeError: null,
             error: null,
             isPending: {
                 vacancies: null,
@@ -72,10 +71,6 @@ const vacanciesReducer = createSlice({
                 state.isPending.auth = true
             }).addCase(authorizationThunk.fulfilled, (state, action) => {
                 state.isPending.auth = false
-            }).addCase(authorizationThunk.rejected, (state, action) => {
-                if(action.payload) {
-                    state.authCodeError = action.payload
-                }
             }).addMatcher((action: AnyAction) => action.type.endsWith('rejected'), (state, action) => {
                 state.error = action.payload;
                 state.isPending.categories = false

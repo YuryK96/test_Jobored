@@ -8,7 +8,6 @@ export  type InitialState = {
     categoriesNamesKeys:  {title: string, key: number}[],
     favorites: VacancyHeaderType[]
     error: null | string,
-    authCodeError: null  | string,
     isPending: {
         vacancies: null | boolean,
         categories: null | boolean,

@@ -11,12 +11,12 @@ import {useIsPending} from "../../hooks/is-pending-hook";
 import {Loader} from "../common/loader";
 import {getFavoriteVacanciesLS} from "../../local-storage/local-storage";
 import {addFavoritesAC} from "../../redux-toolkit/vacancies/vacancies-reducer";
-import {getAuthCodeErrorSelector} from "../../redux-toolkit/vacancies/vacancies-selectors";
+import {getErrorSelector} from "../../redux-toolkit/vacancies/vacancies-selectors";
 
 export const Layout: FC = () => {
     const isAuth = useIsAuth()
     const dispatch = useDispatch<AppDispatch>()
-    const authCodeError = useSelector(getAuthCodeErrorSelector)
+    const error = useSelector(getErrorSelector)
     const isPending = useIsPending()
     const {pathname} = useLocation()
     const [enteredSearchData, setEnteredSearchData] = useState<EnteredSearchDataType>({
@@ -33,7 +33,6 @@ export const Layout: FC = () => {
     const setActualPageInPagination = (page: number) => {
         setActualPage(page)
     }
-
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [pathname])
@@ -68,7 +67,7 @@ export const Layout: FC = () => {
 
     // Refreshing token
     useEffect(() => {
-        if (authCodeError === '410') {
+        if (error === '410') {
             dispatch(sendRefreshTokenThunk()).then(() => dispatch(authorizationThunk()).then(
                 () => {
                     dispatch(getCategoriesThunk());
@@ -83,7 +82,7 @@ export const Layout: FC = () => {
                 }))
         }
 
-    }, [authCodeError,dispatch])
+    }, [error,dispatch])
 
 
     // adding favorite vacancies from Local Storage to Store
